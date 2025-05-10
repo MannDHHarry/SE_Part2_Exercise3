@@ -1,0 +1,28 @@
+﻿@page
+@model Exercise3.Pages.LoginFormModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container mt-5" style="max-width: 400px;">
+    <h2 class="text-center text-primary mb-4">Login</h2>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger">@Model.ErrorMessage</div>
+    }
+
+    <form method="post">
+        <div class="mb-3">
+            <label asp-for="Username" class="form-label">Username</label>
+            <input asp-for="Username" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label">Password</label>
+            <input asp-for="Password" type="password" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+    </form>
+</div>

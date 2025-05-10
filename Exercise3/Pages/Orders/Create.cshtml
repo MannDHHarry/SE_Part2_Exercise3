@@ -1,0 +1,39 @@
+﻿@page
+@model Exercise3.Pages.Orders.CreateModel
+
+<h2>Create New Order</h2>
+
+<form method="post">
+    <div>
+        <label>Agent:</label>
+        <select asp-for="Order.AgentID" asp-items="Model.AgentList" class="form-control"></select>
+    </div>
+
+    <h4>Order Items</h4>
+
+    @for (int i = 0; i < 2; i++)
+    {
+        <div>
+            <label>Item:</label>
+            <select name="OrderDetails[@i].ItemID" class="form-control">
+                @if (Model.ItemList != null)
+                {
+                    @foreach (var item in Model.ItemList)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                }
+                else
+                {
+                    <option disabled>ItemList is null</option>
+                }
+            </select>
+            <label>Quantity:</label>
+            <input name="OrderDetails[@i].Quantity" type="number" class="form-control" />
+            <label>Unit Amount:</label>
+            <input name="OrderDetails[@i].UnitAmount" type="number" class="form-control" />
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
